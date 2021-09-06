@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        .background-img {
+            color: white;
+            background-image: url("/static/images/nature.jpg");
+            background-size: cover;
+            width: 105%;
+            height: 100vh;
+            background-position: center center;
+            background-repeat: no-repeat;
+            text-align: center;
+            margin: -8px -8px -8px -8px;
+            padding: 0;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            color: white;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        li {
+            float: left;
+            position: relative;
+            margin-right: 3%;
+            margin-top: 15px;
+            left: 55%;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            font-size: 16px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 400;
+            padding: 14px 16px;
+        }
+
+        li a {
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: lightgrey;
+            background-position: initial;
+            border-radius: 10px;
+        }
+
+        .heading {
+            width: 50%;
+            padding: 30px;
+            margin: 20px;
+            min-height: 200px;
+            position: relative;
+            top: 20vh;
+            left: 20%;
+        }
+
+        .heading h1 {
+            font-size: 50px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 400;
+            color: white;
+        }
+
+        .heading p {
+            font-size: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 400;
+            color: white;
+        }
+
+        .started a {
+            position: relative;
+            top: 20vh;
+            left: -3%;
+            background-color: transparent;
+            border: solid;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 400;
+        }
+
+        .form {
+            width: 100%;
+            margin: 20px;
+            padding: 10px;
+            min-height: 180px;
+        }
+
+        .form h1 {
+            font-size: 30px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 400;
+            width: 40%;
+            position: relative;
+            left: 30%;
+        }
+
+        .form-search {
+            width: 45%;
+            margin: 20px;
+            padding: 10px;
+            float: left;
+        }
+
+        #form-name {
+            height: 50px;
+            width: 100%;
+            border: none;
+            border-bottom: solid 1px black;
+        }
+
+        .conversion-list {
+            width: 45%;
+            margin: 20px;
+            padding: 10px;
+            float: right;
+        }
+
+        #convert-name {
+            height: 50px;
+            width: 100%;
+            border: none;
+            border-bottom: solid 1px black;
+        }
+        
+        table {
+            border-collapse: collapse;
+        }
+        .table-info {
+            width: 100%;
+            padding: 10px;
+            margin: 20px;
+        }
+
+        .first-row {
+            width: 100%;
+            padding: 10px;
+            margin: 20px;
+        }
+
+        tr {
+            border-bottom: 1px solid black;
+        }
+
+        .first-row th {
+            width: 10%;
+            margin: 10px;
+            padding: 20px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .second-row td {
+            width: 10%;
+            margin: 10px;
+            padding: 20px;
+            text-align: left;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-img">
+        <div class="navbar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">More</a></li>
+            </ul>
+        </div>
+        <div class="heading">
+            <h1>Hi, My Name is Ashish</h1>
+            <p>This is a portfolio tracker page</p>
+        </div>
+        <div class="started">
+            <a href="#form-name">Get Started</a>
+        </div>
+    </div>
+    <div class="form">
+        <h1>Info About Your Portfolio</h1>
+        <div class="form-search">
+            <form action="" method="POST">
+                <input id="form-name" type="text" name="search" placeholder="Search Coin">
+                <!-- <input id="form-submit" type="submit" name="submit" value="Search"> -->
+            </form>
+        </div>
+        <div class="conversion-list">
+            <form action="" method="POST">
+                <input id="convert-name" type="text" name="convert" placeholder="US Dollar">
+            </form>
+        </div>
+    </div>
+    <div class="table-info">
+        <table>
+            <tr class="first-row">
+                <th>Pair</th>
+                <th>Quantity</th>
+                <th>Date of Purchase</th>
+                <th>Buy Price</th>
+                <th>Current Price</th>
+                <th>Invested</th>
+                <th>Current Value in USD</th>
+                <th>Investment in USD</th>
+                <th>Changes</th>
+            </tr>
+            <tr class="second-row">
+                <td>CLVUSDT</td>
+                <td>51.04</td>
+                <td>20/08/2021</td>
+                <td>1.465</td>
+                <td>1.701</td>
+                <td>74.7736</td>
+                <td>86.81904</td>
+                <td>74.7436</td>
+                <td>16.11%</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</body>
+
+</html>
