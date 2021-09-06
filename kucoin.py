@@ -4,9 +4,9 @@ import hmac
 import hashlib
 import requests
 
-api_key = "61333947579f0d000645d73a"
-api_secret = "aece8ef8-d5e2-4c59-8c0f-49f819802197"
-api_passphrase = "mynameisashishsarmah"
+api_key = ""
+api_secret = ""
+api_passphrase = ""
 url = 'https://api.kucoin.com/api/v1/currencies'
 now = int(time.time() * 1000)
 str_to_sign = str(now) + 'GET' + '/api/v1/currencies'
