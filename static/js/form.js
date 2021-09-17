@@ -1,6 +1,6 @@
-function undropdown() {
-    document.getElementById("coins-info").style.display = "none";
-}
+// function undropdown() {
+//     document.getElementById("coins-info").style.display = "none";
+// }
 
 function filterFunction() {
     var input, filter, ul, li, a, i;

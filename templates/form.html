@@ -11,26 +11,18 @@
 
 <body>
     <div class=container>
-        <form>
+        <form action="/add" method="POST">
             <div class="coins">
                 <div class="dropdown">
                     <label for="coin-name">Coin Name</label>
                     <div id="myDropdown" class="dropdown-content">
-                        <input type="drop" id="coin-name" name="coin-name" placeholder="Coin Name"
+                        <input type="drop" id="coin-name" name="coin-name" value="{{ currency_pair }}" placeholder="Coin Name"
                             onkeyup="filterFunction()" onblur="undropdown()">
                         <div id="coins-info">
-                            <a id="coin-list" href="#about">About</a>
-                            <a href="#base">Base</a>
-                            <a href="#blog">Blog</a>
-                            <a href="#contact">Contact</a>
-                            <a href="#custom">Custom</a>
-                            <a href="#support">Support</a>
-                            <a href="#support">Support</a>
-                            <a href="#support">Support</a>
-                            <a href="#support">Support</a>
-                            <a href="#support">Support</a>
-                            <a href="#support">Support</a>
-                            <a href="#tools">Tools</a>
+                            {% for currency in currency_pairs %}
+                                <a id="coin-list" onclick="linkClicked()" href="/add/{{ currency['symbol'] }}">{{ currency["symbol"] }}</a>
+                            {% endfor %}
+                            <!-- <a href="#tools">Tools</a> -->
                         </div>
                     </div>
                 </div>
@@ -41,11 +33,11 @@
             </div>
             <div class="coins">
                 <label for="buy-price">Buy Price</label>
-                <input type="text" id="buy-price" name="buy-price" placeholder="Buy Price">
+                <input type="text" id="buy-price" name="buy-price" value="{{ current_price }}" placeholder="Buy Price">
             </div>
             <div class="coins">
                 <label for="current-price">Current Price</label>
-                <input type="text" id="current-price" name="current-price" placeholder="Current Price">
+                <input type="text" id="current-price" name="current-price" value="{{ current_price }}" placeholder="Current Price">
             </div>
             <div class="submit">
                 <input id="submit" type="submit" value="Submit">
