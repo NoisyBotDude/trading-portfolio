@@ -1,6 +1,10 @@
-class Database:
+class DataBase:
     db = None
 
     @staticmethod
     def initialize(cluster):
-        Database.db = cluster.db
+        DataBase.db = cluster.db
+
+    @staticmethod
+    def add_pair(data):
+        DataBase.db.info.insert_one(data)
