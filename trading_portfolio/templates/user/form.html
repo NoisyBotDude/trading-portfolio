@@ -11,7 +11,7 @@
 
 <body>
     <div class=container>
-        <form action="/add" method="POST">
+        <form action="{{ url_for('user.add_currency')}}" method="POST">
             <div class="coins">
                 <div class="dropdown">
                     <label for="coin-name">Coin Name</label>
@@ -20,7 +20,7 @@
                             onkeyup="filterFunction()" onblur="undropdown()">
                         <div id="coins-info">
                             {% for currency in currency_pairs %}
-                                <a id="coin-list" onclick="linkClicked()" href="/add/{{ currency['symbol'] }}">{{ currency["symbol"] }}</a>
+                                <a id="coin-list" name="coin-name" onclick="linkClicked()" href="/add/{{ currency['symbol'] }}">{{ currency["symbol"] }}</a>
                             {% endfor %}
                             <!-- <a href="#tools">Tools</a> -->
                         </div>
