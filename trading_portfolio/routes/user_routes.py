@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from trading_portfolio.database.database import DataBase
 from trading_portfolio.api.coin import KuCoin
+import datetime
 
 def create_blueprint(cluster):
     user = Blueprint('user', __name__)
@@ -31,13 +32,22 @@ def create_blueprint(cluster):
     def add_currency():
         coin_name = request.form["coin-name"]
         coin_quantity = request.form["coin-quantity"]
-        coin_buy_price = request.form["buy-price"]
-        
+        coin_buy_price = float(request.form["buy-price"])
+        invested = float(coin_buy_price) * float(coin_quantity)
+        current_price = float(kucoin.get_each_currency(coin_name)['price'])
+        current_value_in_usd = float(current_price) * float(coin_quantity)
+        investment_in_usd = float(current_price) * float(coin_quantity)
 
         data = {
             "coin name": coin_name,
             "coin quantity": coin_quantity,
-            "coin buy price": coin_buy_price   
+            "coin buy ppprice": coin_buy_price,
+            "coin purchase date": datetime.datetime.now(),
+            "coin current price": current_price,
+            "invested": invested,
+            "current value in USD": current_value_in_usd,
+            "Investment in USD": investment_in_usd,
+            "changes": (current_price - coin_buy_price)/coin_buy_price * 100
         }
 
         DataBase.add_pair(data)
