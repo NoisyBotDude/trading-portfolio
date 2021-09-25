@@ -3,6 +3,7 @@ from os import environ, environb
 from .config import Development, Production
 from flask_pymongo import PyMongo
 from .database.database import DataBase
+from .database.user import User
 from .routes import user_routes
 
 def create_app():
@@ -13,6 +14,7 @@ def create_app():
 
     cluster = PyMongo(app)
     DataBase.initialize(cluster)
+    User.initialize(cluster)
 
     """Note: Blueprint is used to separate routes into different
              folders and files for better organization of files
