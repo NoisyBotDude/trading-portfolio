@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from trading_portfolio.database.database import DataBase
+from trading_portfolio.database.user import User
 from trading_portfolio.api.coin import KuCoin
+from flask_login import login_required, login_user, logout_user, current_user
 import datetime
 
 def create_blueprint(cluster):
@@ -13,6 +15,28 @@ def create_blueprint(cluster):
     @user.route('/')
     def index():
         return render_template('user/index.html')
+
+    @user.route('/register', methods=['GET'])
+    def register_page():
+        return render_template('user/register.html')
+
+    @user.route('/register-user', methods=['POST'])
+    def register_user():
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        confirm_password = request.form['confirm-password']
+            
+        user = {
+                "username": username,
+                "email": email,
+                "password": password,
+                "confirm_password": confirm_password
+        }
+
+        User.register(user)
+
+        return redirect(url_for('user.index'))
 
     @user.route('/add', methods=['GET', 'POST'])
     def add_new():
