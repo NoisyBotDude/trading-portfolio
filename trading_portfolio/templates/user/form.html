@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'user/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+{% block title %}
+    Add a New Pair
+{% endblock %}
+
+{% block styles %}
+
     <link rel="stylesheet" href="/static/css/form.css">
-</head>
 
-<body>
+{% endblock %}
+
+{% block content %}
     <div class=container>
         <form action="{{ url_for('user.add_currency')}}" method="POST">
             <div class="coins">
@@ -48,6 +49,4 @@
         </form>
     </div>
     <script src="/static/js/form.js"></script>
-</body>
-
-</html>
+{% endblock %}

@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'user/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Page</title>
-    <script src="https://kit.fontawesome.com/433788771e.js" crossorigin="anonymous"></script>
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block styles %}
+
     <link rel="stylesheet" href="/static/css/index.css">
-</head>
 
-<body>
+{% endblock %}
+
+{% block content %}
+
     <div class="background-img">
         <div class="navbar">
             <ul>
@@ -71,7 +72,5 @@
             </tr>
         </table>
     </div>
-</body>
-</body>
 
-</html>
+{% endblock %}
