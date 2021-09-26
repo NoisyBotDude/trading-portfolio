@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,23 +11,28 @@
         {% endblock %}
     </title>
     <script src="https://kit.fontawesome.com/433788771e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/trading_portfolio/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/base.css">
     {% block styles %}
 
     {% endblock %}
 </head>
+
 <body>
+    <script src="/static/js/base.js"></script>
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-            <div id="liveAlertPlaceholder"></div>
-            <button type="button" class="btn btn-primary" onclick="alert(message, category)" id="liveAlertBtn">Show live alert</button>
+                <div id="liveAlertPlaceholder"></div>
+                <div class="alert alert-{{ category }}" id="alert-message" role="alert">
+                    {{ message }}
+                    <button class="btn-close fas fa-times" onclick="closeAlert()"></button>
+                </div>
             {% endfor %}
         {% endif %}
     {% endwith %}
-    <script src="/trading_portfolio/static/js/base.js"></script>
     {% block content %}
 
     {% endblock %}
 </body>
+
 </html>

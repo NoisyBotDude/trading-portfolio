@@ -1,29 +1,12 @@
-.btn {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #45a049;
-}
-
-.btn-close {
-    float: right;
-}
-
 .alert {
     padding: 10px;
-    background-color: lightblue;
+    background-color: green;
 }
 
 #alert-message {
-    color: green;
+    color: white;
+}
+
+.btn-close {
+    float: right
 }
