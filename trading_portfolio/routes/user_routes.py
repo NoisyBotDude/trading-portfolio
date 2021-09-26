@@ -26,17 +26,22 @@ def create_blueprint(cluster):
         email = request.form['email']
         password = request.form['password']
         confirm_password = request.form['confirm-password']
-            
-        user = {
+
+        if password != confirm_password:
+            flash('Passwords do not match', category='fail')
+            return redirect(url_for('user.register_page'))
+
+        else:    
+            user = {
                 "username": username,
                 "email": email,
                 "password": password,
                 "confirm_password": confirm_password
-        }
+            }
 
-        User.register(user)
+            User.register(user)
 
-        return redirect(url_for('user.index'))
+            return redirect(url_for('user.index'))
 
     @user.route('/add', methods=['GET', 'POST'])
     def add_new():
