@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from trading_portfolio.database.database import DataBase
 from trading_portfolio.database.user import User
 from trading_portfolio.api.coin import KuCoin
@@ -18,6 +18,10 @@ def create_blueprint(cluster):
 
     @user.route('/register', methods=['GET'])
     def register_page():
+        if "username" in session:
+            flash("Username is already logged in", category='duplicate')
+            return redirect(url_for('user.index'))
+
         return render_template('user/register.html')
 
     @user.route('/register-user', methods=['POST'])
@@ -40,8 +44,37 @@ def create_blueprint(cluster):
             }
 
             User.register(user)
+            session['username'] = username
 
             return redirect(url_for('user.index'))
+
+    @user.route('/login', methods=['GET'])
+    def login_page():
+        if "username" in session:
+            flash("Username is already logged in", category='duplicate')
+            return redirect(url_for('user.index'))
+            
+        return render_template('user/login.html')
+
+    @user.route('/login-user', methods=['POST'])
+    def login_user():
+        username = request.form['email-username']
+        password = request.form['password']
+
+        user_info = User.get_user(username)
+
+        if user_info:
+            if user_info['password'] == password:
+                session['username'] = username
+                return redirect(url_for('user.index'))
+            else:
+                flash('Incorrect password', category='fail')
+                return redirect(url_for('user.login_page'))
+
+        else:
+            flash('User does not exist', category='fail')
+            return redirect(url_for('user.login_page'))
+
 
     @user.route('/add', methods=['GET', 'POST'])
     def add_new():
