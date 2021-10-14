@@ -21,6 +21,21 @@ body {
     color: white;
 }
 
+.links {
+    width: 22%;
+    padding: 10px;
+    float: left;
+    position: relative;
+    left: 50%;
+}
+
+.session {
+    width: 18%;
+    padding: 10px;
+    position: relative;
+    left: 50%;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -29,12 +44,16 @@ ul {
     width: 100%;
 }
 
-li {
+.links li {
     float: left;
-    position: relative;
     margin-right: 1%;
     margin-top: 15px;
-    left: 55%;
+}
+
+.session li {
+    float: left;
+    margin-right: 1%;
+    margin-top: 15px;
 }
 
 li a {
@@ -56,14 +75,9 @@ li a:hover {
     border-radius: 10px;
 }
 
-/* .session {
+.session li {
     float: left;
-    position: relative;
-    margin-right: 1%;
-    top: -77px;
-    margin-top: 15px;
-    left: 24%;
-} */
+}
 
 .heading {
     width: 50%;
