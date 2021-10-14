@@ -1,6 +1,5 @@
 from os import stat
 
-
 class User:
     db = None
 
@@ -11,3 +10,7 @@ class User:
     @staticmethod
     def register(user):
         User.db.users.insert_one(user)
+
+    @staticmethod
+    def get_user(username):
+        return User.db.users.find_one({'username': username}, {"_id" : 0})
