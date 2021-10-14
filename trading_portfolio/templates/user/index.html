@@ -18,8 +18,19 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact Us</a></li>
-                <li><a href="#">More</a></li>
             </ul>
+                
+            {% if "username" in session %}
+                <ul class="session">
+                    <li><a href="{{ url_for('user.login_page')}}">Logout</a></li>
+                    <li><a href="{{ url_for('user.register_page')}}">My Profile</a></li>
+                </ul>
+            {% else %}
+                <ul class="session">
+                    <li><a href="{{ url_for('user.login_page')}}">Login</a></li>
+                    <li><a href="{{ url_for('user.register_page')}}">Register</a></li>
+                </ul>
+            {% endif %}
         </div>
         <div class="heading">
             <h1>Hi, My Name is Ashish</h1>

@@ -32,7 +32,7 @@ ul {
 li {
     float: left;
     position: relative;
-    margin-right: 3%;
+    margin-right: 1%;
     margin-top: 15px;
     left: 55%;
 }
@@ -55,6 +55,15 @@ li a:hover {
     background-position: initial;
     border-radius: 10px;
 }
+
+/* .session {
+    float: left;
+    position: relative;
+    margin-right: 1%;
+    top: -77px;
+    margin-top: 15px;
+    left: 24%;
+} */
 
 .heading {
     width: 50%;

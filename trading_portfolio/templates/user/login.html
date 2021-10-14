@@ -13,14 +13,14 @@
 {% block content %}
     <h1>Login</h1>
     <div class="container">
-        <form class="login-form">
+        <form class="login-form" action="{{ url_for('user.login_user')}}" method="POST">
             <div class="form-group">
-                <label for="email-address">Email</label>
-                <input type="text" class="form-control" id="email-address" placeholder="Email Address">
+                <label for="email-username">Email Or Username</label>
+                <input type="text" name="email-username" class="form-control" id="email-username" placeholder="Email Address Or Username">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
             <div class="form-group" style="text-align: center;">
