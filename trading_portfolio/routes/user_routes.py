@@ -75,6 +75,10 @@ def create_blueprint(cluster):
             flash('User does not exist', category='fail')
             return redirect(url_for('user.login_page'))
 
+    @user.route('/logout', methods=['GET'])
+    def logout_user():
+        session.pop('username', None)
+        return redirect(url_for('user.index'))
 
     @user.route('/add', methods=['GET', 'POST'])
     def add_new():
