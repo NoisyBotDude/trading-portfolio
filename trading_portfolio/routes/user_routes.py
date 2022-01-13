@@ -1,5 +1,4 @@
 import datetime
-import email
 
 from flask import (Blueprint, flash, redirect, render_template, request,
                    session, url_for)
@@ -73,7 +72,7 @@ def create_blueprint(cluster):
     def login_user():
         email = request.form['email-username']
         password = request.form['password']
-        user_data = User.find_user(email, password)
+        user_data = User.find_user(email)
 
         user_info = User.is_registered(email)
 
@@ -107,7 +106,11 @@ def create_blueprint(cluster):
         tickers = kucoin.get_each_currency(currency_pair)
         current_price = tickers['price']
 
-        return render_template('user/form.html', currency_pairs=currency_pairs, currency_pair=currency_pair, current_price=current_price)
+        return render_template('user/form.html',
+                               currency_pairs=currency_pairs,
+                               currency_pair=currency_pair,
+                               current_price=current_price
+                               )
 
     @user.route('/add/submit', methods=['POST'])
     def add_currency():
