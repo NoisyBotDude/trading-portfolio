@@ -1,9 +1,13 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, session
+import datetime
+
+from flask import (Blueprint, flash, redirect, render_template, request,
+                   session, url_for)
+from trading_portfolio.api.coin import KuCoin
 from trading_portfolio.database.database import DataBase
 from trading_portfolio.database.user import User
-from trading_portfolio.api.coin import KuCoin
-from flask_login import login_required, login_user, logout_user, current_user
-import datetime
+
+from utils.authentication import logged_in
+
 
 def create_blueprint(cluster):
     user = Blueprint('user', __name__)
@@ -14,6 +18,9 @@ def create_blueprint(cluster):
 
     @user.route('/')
     def index():
+        if "username" in session:
+            return render_template('user/home.html')
+
         return render_template('user/index.html')
 
     @user.route('/register', methods=['GET'])
@@ -81,6 +88,7 @@ def create_blueprint(cluster):
         return redirect(url_for('user.index'))
 
     @user.route('/add', methods=['GET', 'POST'])
+    @logged_in
     def add_new():
         currency_pairs = kucoin.get_currencies()
 
