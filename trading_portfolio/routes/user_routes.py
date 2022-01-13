@@ -5,8 +5,9 @@ from flask import (Blueprint, flash, redirect, render_template, request,
 from trading_portfolio.api.coin import KuCoin
 from trading_portfolio.database.database import DataBase
 from trading_portfolio.database.user import User
+from werkzeug.security import check_password_hash, generate_password_hash
 
-from utils.authentication import logged_in
+from ..utils.authentication import logged_in
 
 
 def create_blueprint(cluster):
@@ -42,12 +43,16 @@ def create_blueprint(cluster):
             flash('Passwords do not match', category='fail')
             return redirect(url_for('user.register_page'))
 
-        else:    
+        else:
+            hash_and_salted_password = generate_password_hash(
+                password,
+                method="pbkdf2:sha256",
+                salt_length=8
+            )
             user = {
                 "username": username,
                 "email": email,
-                "password": password,
-                "confirm_password": confirm_password
+                "password": hash_and_salted_password
             }
 
             User.register(user)
@@ -60,7 +65,7 @@ def create_blueprint(cluster):
         if "username" in session:
             flash("Username is already logged in", category='duplicate')
             return redirect(url_for('user.index'))
-            
+
         return render_template('user/login.html')
 
     @user.route('/login-user', methods=['POST'])
