@@ -1,9 +1,10 @@
 import datetime
+import email
 
 from flask import (Blueprint, flash, redirect, render_template, request,
                    session, url_for)
 from trading_portfolio.api.coin import KuCoin
-from trading_portfolio.database.database import DataBase
+from trading_portfolio.database.database import CoinDatabase
 from trading_portfolio.database.user import User
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -20,7 +21,7 @@ def create_blueprint(cluster):
     @user.route('/')
     def index():
         if "username" in session:
-            return render_template('user/home.html')
+            return render_template('user/home.html', username=session['username'])
 
         return render_template('user/index.html')
 
@@ -70,14 +71,15 @@ def create_blueprint(cluster):
 
     @user.route('/login-user', methods=['POST'])
     def login_user():
-        username = request.form['email-username']
+        email = request.form['email-username']
         password = request.form['password']
+        user_data = User.find_user(email, password)
 
-        user_info = User.get_user(username)
+        user_info = User.is_registered(email)
 
         if user_info:
-            if user_info['password'] == password:
-                session['username'] = username
+            if check_password_hash(user_data["password"], password) == True:
+                session['username'] = user_data["username"]
                 return redirect(url_for('user.index'))
             else:
                 flash('Incorrect password', category='fail')
@@ -129,7 +131,7 @@ def create_blueprint(cluster):
             "changes": (current_price - coin_buy_price)/coin_buy_price * 100
         }
 
-        DataBase.add_pair(data)
+        CoinDatabase.add_pair(data)
 
         return redirect(url_for('user.add_new'))
 

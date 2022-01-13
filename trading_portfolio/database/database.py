@@ -1,14 +1,19 @@
-class DataBase:
+from tkinter.messagebox import NO
+
+
+class CoinDatabase:
     db = None
 
     @staticmethod
     def initialize(cluster):
-        DataBase.db = cluster.db
+        CoinDatabase.db = cluster.db
 
     @staticmethod
     def add_pair(data):
-        DataBase.db.info.insert_one(data)
+        CoinDatabase.db.info.insert_one(data)
 
     @staticmethod
     def get_pair(pair):
-        return DataBase.db.info.find_one({ "coin name": pair}, {"_id" : 0})
+        return CoinDatabase.db.info.find_one({ "coin name": pair}, {"_id" : 0})
+
+    
