@@ -1,0 +1,87 @@
+{% extends 'user/base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block styles %}
+
+    <link rel="stylesheet" href="/static/css/home.css">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="background-img">
+        <div class="navbar">
+            <ul class="links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+                
+            {% if "username" in session %}
+                <ul class="session">
+                    <li><a href="{{ url_for('user.logout_user')}}">Logout</a></li>
+                    <li><a href="{{ url_for('user.register_page')}}">My Profile</a></li>
+                </ul>
+            {% else %}
+                <ul class="session">
+                    <li><a href="{{ url_for('user.login_page')}}">Login</a></li>
+                    <li><a href="{{ url_for('user.register_page')}}">Register</a></li>
+                </ul>
+            {% endif %}
+        </div>
+        <div class="heading">
+            <h1>Hi, My Name is Ashish</h1>
+            <p>This is a portfolio tracker page</p>
+        </div>
+        <div class="started">
+            <a href="#form-name">Get Started</a>
+        </div>
+    </div>
+    <div class="form">
+        <h1>Info About Your Portfolio</h1>
+        <div class="form-search">
+            <form action="" method="POST">
+                <input id="form-name" type="text" name="search" placeholder="Search Coin">
+                <!-- <input id="form-submit" type="submit" name="submit" value="Search"> -->
+            </form>
+        </div>
+        <div class="conversion-list">
+            <form action="" method="POST">
+                <input id="convert-name" type="text" name="convert" placeholder="US Dollar">
+            </form>
+        </div>
+    </div>
+    <div class="add-button">
+       <a target="_blank" href="{{ url_for('user.add_new')}}"><i class="fas fa-plus-circle fa-3x"></i></a>
+    </div>
+    <div class="table-info">
+        <table>
+            <tr class="first-row">
+                <th>Pair</th>
+                <th>Quantity</th>
+                <th>Date of Purchase</th>
+                <th>Buy Price</th>
+                <th>Current Price</th>
+                <th>Invested</th>
+                <th>Current Value in USD</th>
+                <th>Investment in USD</th>
+                <th>Changes</th>
+            </tr>
+            <tr class="second-row">
+                <td>CLVUSDT</td>
+                <td>51.04</td>
+                <td>20/08/2021</td>
+                <td>1.465</td>
+                <td>1.701</td>
+                <td>74.7736</td>
+                <td>86.81904</td>
+                <td>74.7436</td>
+                <td>16.11%</td>
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}

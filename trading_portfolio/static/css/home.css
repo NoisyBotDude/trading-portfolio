@@ -120,3 +120,90 @@ li a:hover {
     font-family: 'Courier New', Courier, monospace;
     font-weight: 400;
 }
+
+.form {
+    width: 100%;
+    margin: 20px;
+    padding: 10px;
+    min-height: 180px;
+}
+
+.form h1 {
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 400;
+    width: 40%;
+    position: relative;
+    left: 30%;
+}
+
+.form-search {
+    width: 45%;
+    margin: 20px;
+    padding: 10px;
+    float: left;
+}
+
+#form-name {
+    height: 50px;
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px black;
+}
+
+.conversion-list {
+    width: 45%;
+    margin: 20px;
+    padding: 10px;
+    float: right;
+}
+
+#convert-name {
+    height: 50px;
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px black;
+}
+
+.add-button {
+    text-align: center;
+}
+
+.fa-plus-circle:hover {
+    color: green;
+}
+
+table {
+    border-collapse: collapse;
+}
+.table-info {
+    width: 100%;
+    padding: 10px;
+    margin: 20px;
+}
+
+.first-row {
+    width: 100%;
+    padding: 10px;
+    margin: 20px;
+}
+
+tr {
+    border-bottom: 1px solid black;
+}
+
+.first-row th {
+    width: 10%;
+    margin: 10px;
+    padding: 20px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.second-row td {
+    width: 10%;
+    margin: 10px;
+    padding: 20px;
+    text-align: left;
+    font-size: 14px;
+}

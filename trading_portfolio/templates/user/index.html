@@ -37,51 +37,12 @@
             <p>This is a portfolio tracker page</p>
         </div>
         <div class="started">
-            <a href="#form-name">Get Started</a>
+            {% if "username" in session %}
+                <a href="#form-name">Get Started</a>
+            {% else %}
+                <a href="/login">Get Started</a>
+            {% endif %}
         </div>
-    </div>
-    <div class="form">
-        <h1>Info About Your Portfolio</h1>
-        <div class="form-search">
-            <form action="" method="POST">
-                <input id="form-name" type="text" name="search" placeholder="Search Coin">
-                <!-- <input id="form-submit" type="submit" name="submit" value="Search"> -->
-            </form>
-        </div>
-        <div class="conversion-list">
-            <form action="" method="POST">
-                <input id="convert-name" type="text" name="convert" placeholder="US Dollar">
-            </form>
-        </div>
-    </div>
-    <div class="add-button">
-       <a target="_blank" href="{{ url_for('user.add_new')}}"><i class="fas fa-plus-circle fa-3x"></i></a>
-    </div>
-    <div class="table-info">
-        <table>
-            <tr class="first-row">
-                <th>Pair</th>
-                <th>Quantity</th>
-                <th>Date of Purchase</th>
-                <th>Buy Price</th>
-                <th>Current Price</th>
-                <th>Invested</th>
-                <th>Current Value in USD</th>
-                <th>Investment in USD</th>
-                <th>Changes</th>
-            </tr>
-            <tr class="second-row">
-                <td>CLVUSDT</td>
-                <td>51.04</td>
-                <td>20/08/2021</td>
-                <td>1.465</td>
-                <td>1.701</td>
-                <td>74.7736</td>
-                <td>86.81904</td>
-                <td>74.7436</td>
-                <td>16.11%</td>
-            </tr>
-        </table>
     </div>
 
 {% endblock %}
