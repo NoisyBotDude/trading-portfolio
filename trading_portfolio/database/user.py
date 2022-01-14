@@ -26,6 +26,6 @@ class User:
     @staticmethod
     def find_username(username):
         user_data = User.db.users.find_one(
-            {"username": username}, {"username": 1, "email": 1, "password": 1, "_id": 0}
+            {"username": username}, {"username": 1, "email": 1, "_id": 1}
         )
         return user_data

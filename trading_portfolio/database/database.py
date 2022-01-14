@@ -16,4 +16,8 @@ class CoinDatabase:
     def get_pair(pair):
         return CoinDatabase.db.info.find_one({ "coin name": pair}, {"_id" : 0})
 
+    @staticmethod
+    def get_user_data(user_data):
+        return CoinDatabase.db.info.find_one({"user data": user_data}, {"_id" : 0})
+
     
