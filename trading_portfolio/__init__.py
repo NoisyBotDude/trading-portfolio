@@ -2,7 +2,7 @@ from flask import Flask
 from os import environ, environb
 from .config import Development, Production
 from flask_pymongo import PyMongo
-from .database.database import DataBase
+from .database.database import CoinDatabase
 from .database.user import User
 from .routes import user_routes
 
@@ -13,7 +13,7 @@ def create_app():
     app.config.from_object(config.Development())
 
     cluster = PyMongo(app)
-    DataBase.initialize(cluster)
+    CoinDatabase.initialize(cluster)
     User.initialize(cluster)
 
     """Note: Blueprint is used to separate routes into different

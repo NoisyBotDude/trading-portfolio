@@ -1,3 +1,4 @@
+import email
 from os import stat
 
 class User:
@@ -12,5 +13,19 @@ class User:
         User.db.users.insert_one(user)
 
     @staticmethod
-    def get_user(username):
-        return User.db.users.find_one({'username': username}, {"_id" : 0})
+    def find_user(email):
+        user_data = User.db.users.find_one(
+            {"email": email}, {"username": 1, "email": 1, "password": 1, "_id": 0}
+        )
+        return user_data
+
+    @staticmethod
+    def is_registered(email):
+        return User.db.users.find_one({'email': email}, {"_id" : 0})
+
+    @staticmethod
+    def find_username(username):
+        user_data = User.db.users.find_one(
+            {"username": username}, {"username": 1, "email": 1, "_id": 1}
+        )
+        return user_data

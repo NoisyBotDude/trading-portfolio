@@ -15,7 +15,7 @@
     <div class="background-img">
         <div class="navbar">
             <ul class="links">
-                <li><a href="#">Home</a></li>
+                <li><a href="{{ url_for('user.index')}}">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact Us</a></li>
             </ul>
@@ -23,7 +23,7 @@
             {% if "username" in session %}
                 <ul class="session">
                     <li><a href="{{ url_for('user.logout_user')}}">Logout</a></li>
-                    <li><a href="{{ url_for('user.register_page')}}">My Profile</a></li>
+                    <li><a href="{{ url_for('user.profile_page')}}">My Profile</a></li>
                 </ul>
             {% else %}
                 <ul class="session">
@@ -71,15 +71,15 @@
                 <th>Changes</th>
             </tr>
             <tr class="second-row">
-                <td>CLVUSDT</td>
-                <td>51.04</td>
-                <td>20/08/2021</td>
-                <td>1.465</td>
-                <td>1.701</td>
-                <td>74.7736</td>
-                <td>86.81904</td>
-                <td>74.7436</td>
-                <td>16.11%</td>
+                <td>{{ user_coins["coin name"]}}</td>
+                <td>{{ user_coins["coin quantity"]}}</td>
+                <td>{{ user_coins["coin purchase date"]}}</td>
+                <td>{{ user_coins["coin buy ppprice"]}}</td>
+                <td>{{ user_coins["coin name"]}}</td>
+                <td>{{ user_coins["invested"]}}</td>
+                <td>{{ user_coins["coin name"]}}</td>
+                <td>{{ user_coins["Investment in USD"]}}</td>
+                <td>{{ user_coins["coin name"]}}</td>
             </tr>
         </table>
     </div>
