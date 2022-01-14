@@ -97,6 +97,10 @@ def create_blueprint(cluster):
         session.pop('username', None)
         return redirect(url_for('user.index'))
 
+    @user.route('/my-profile')
+    def profile_page():
+        return render_template('user/profile.html')
+
     @user.route('/add', methods=['GET', 'POST'])
     @logged_in
     def add_new():
