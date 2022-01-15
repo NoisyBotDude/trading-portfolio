@@ -8,8 +8,6 @@ from trading_portfolio.database.user import User
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from ..utils.authentication import logged_in
-from bson import ObjectId
-from pymongo import MongoClient
 
 
 def create_blueprint(cluster):
@@ -22,8 +20,21 @@ def create_blueprint(cluster):
     @user.route('/')
     def index():
         if "username" in session:
+
             user_data = User.find_username(session["username"])
             user_coins = CoinDatabase.get_user_data(user_data)
+            if user_coins:
+                coin_name = user_coins["coin name"]
+                current_price = float(kucoin.get_each_currency(coin_name)['price'])
+                current_value_in_usd = float(
+                    current_price) * float(user_coins["coin quantity"])
+                changes = ((
+                    current_price - user_coins["coin buy price"])/user_coins["coin buy price"] * 100)
+                return render_template('user/home.html', user_coins=user_coins,
+                                       current_price=current_price,
+                                       current_value_in_usd=current_value_in_usd,
+                                       changes=round(changes, 4))
+
             return render_template('user/home.html', user_coins=user_coins)
 
         return render_template('user/index.html')
@@ -134,7 +145,7 @@ def create_blueprint(cluster):
         data = {
             "coin name": coin_name,
             "coin quantity": coin_quantity,
-            "coin buy ppprice": coin_buy_price,
+            "coin buy price": coin_buy_price,
             "coin purchase date": datetime.datetime.now(),
             "coin current price": current_price,
             "invested": invested,
